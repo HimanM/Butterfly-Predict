@@ -2,18 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import DocumentationPage from './pages/Documentation';
-import PredictionPage from './pages/PredictionPage'; // Import the new PredictionPage
-import './App.css'; // Keep or modify as needed
+import PredictionPage from './pages/PredictionPage'; 
+import './App.css'; 
 
-// Placeholder for PredictionPage has been removed
+
 
 function App() {
   return (
     <Router>
-      {/* Ensure the outer div can stretch if needed, bg-gray-50 provides a neutral default background */}
+      
       <div className="App min-h-screen bg-gray-50">
         <Navbar />
-        <main> {/* Using <main> for semantic content container */}
+        <main> 
           <Routes>
             <Route path="/" element={<PredictionPage />} />
             <Route path="/documentation" element={<DocumentationPage />} />

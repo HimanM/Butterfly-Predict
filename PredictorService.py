@@ -37,10 +37,8 @@ class ButterflyPredictorService:
         if butterfly_name is None:
             return None
 
-        # Construct the full local filesystem path to the image
-        # butterfly_image_relative_path is like "/butterfly_data/images/3.jpg"
-        # We need to make it "butterfly_data/images/3.jpg"
-        image_file_path = butterfly_image_relative_path[1:] # Remove leading slash
+        
+        image_file_path = butterfly_image_relative_path[1:] 
 
         try:
             with open(image_file_path, "rb") as image_file:
@@ -48,7 +46,7 @@ class ButterflyPredictorService:
             image_data_uri = f"data:image/jpeg;base64,{encoded_string}"
         except FileNotFoundError:
             print(f"Error: Image file not found at {image_file_path}")
-            image_data_uri = None # Or some default error image
+            image_data_uri = None 
         
         butterfly_json = {
             "name": butterfly_name,
@@ -71,14 +69,13 @@ class ButterflyPredictorService:
 
 if __name__ == "__main__":
     service = ButterflyPredictorService()
-    # Example: replace with a valid image path in your butterfly_data/images directory
-    # Ensure you have an image named "0.jpg" in "butterfly_data/images/" for this example to work
+
     example_image_path = "butterfly_data/images/0.jpg"
     if os.path.exists(example_image_path):
         butterfly_json_output = service.get_butterfly_json(example_image_path)
         if butterfly_json_output:
             print(f"Butterfly JSON for {example_image_path}:")
-            # Print only selected fields to keep output concise for testing
+
             print(f"  Name: {butterfly_json_output['name']}")
             print(f"  Confidence: {butterfly_json_output['confidence']}")
             print(f"  Image Data URI (first 50 chars): {butterfly_json_output['image'][:50] if butterfly_json_output['image'] else 'N/A'}...")

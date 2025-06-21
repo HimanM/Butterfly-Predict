@@ -18,9 +18,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Initialize the ButterflyPredictor once when the app starts
-# This is CRUCIAL for performance, avoiding model reloads on every request.
 global predictor_instance
-predictor_instance = None # Initialize to None
+predictor_instance = None 
 
 try:
     predictor_instance = ButterflyPredictorService()
@@ -60,10 +59,8 @@ def upload_file():
         file.save(file_path)
         
         try:
-            # Directly call your service function, passing the predictor instance
             result_json = predictor_instance.get_butterfly_json(file_path)
         finally:
-            # Ensure the uploaded file is cleaned up after prediction attempt
             if os.path.exists(file_path):
                 os.remove(file_path)
 

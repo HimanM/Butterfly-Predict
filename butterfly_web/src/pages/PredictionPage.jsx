@@ -7,17 +7,16 @@ const PredictionPage = () => {
   const [predictionResult, setPredictionResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const fileInputRef = useRef(null); // For resetting file input
+  const fileInputRef = useRef(null); 
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);
       setPreviewUrl(URL.createObjectURL(file));
-      setPredictionResult(null); // Clear previous results
-      setError(null); // Clear previous errors
+      setPredictionResult(null); 
+      setError(null); 
     } else {
-      // If no file is selected (e.g., user cancels dialog)
       setSelectedFile(null);
       if (previewUrl) {
         URL.revokeObjectURL(previewUrl);
@@ -55,7 +54,7 @@ const PredictionPage = () => {
         errorMessage = err.message;
       }
       setError(errorMessage);
-      console.error("Prediction error:", err); // Log the full error for debugging
+      console.error("Prediction error:", err);
     })
     .finally(() => {
       setIsLoading(false);
@@ -89,7 +88,7 @@ const PredictionPage = () => {
           </p>
         </header>
 
-        {/* File Input Section */}
+
         <div className="text-center">
           <label
             htmlFor="file-upload"
@@ -99,7 +98,7 @@ const PredictionPage = () => {
           </label>
           <input
             id="file-upload"
-            ref={fileInputRef} // Assign ref to file input
+            ref={fileInputRef} 
             type="file"
             accept="image/*"
             className="hidden"
@@ -108,7 +107,7 @@ const PredictionPage = () => {
           {error && <p className="mt-3 text-center text-red-600 bg-red-100 p-3 rounded-md">{error}</p>}
         </div>
 
-        {/* Image Preview Section */}
+
         <div className="mt-6 bg-gray-100/50 p-4 rounded-lg shadow-inner min-h-[200px] flex justify-center items-center">
           {previewUrl ? (
             <img
@@ -126,7 +125,7 @@ const PredictionPage = () => {
           )}
         </div>
 
-        {/* Buttons Section */}
+
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8">
           <button
             onClick={handlePredict}
@@ -146,7 +145,7 @@ const PredictionPage = () => {
           </button>
         </div>
 
-        {/* Prediction Results Section */}
+
         {!isLoading && predictionResult && (
           <div className="mt-10 p-6 sm:p-8 bg-white/80 backdrop-blur-xl shadow-2xl rounded-xl space-y-6">
             <div>
@@ -228,10 +227,10 @@ const PredictionPage = () => {
             {predictionResult.youtube_embed_link && predictionResult.youtube_embed_link !== "N/A" && predictionResult.youtube_embed_link.trim() !== "" && (
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <h3 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Watch a Video</h3>
-                {/* The div below is kept for margin, rounding, shadow, and overflow control if needed, but not for aspect ratio itself. */}
+              
                 <div className="bg-black rounded-lg shadow-xl overflow-hidden"> 
                   <iframe
-                    className="w-full aspect-video" // aspect-video handles 16:9 ratio
+                    className="w-full aspect-video" 
                     src={predictionResult.youtube_embed_link}
                     title="Butterfly Video"
                     frameBorder="0"
@@ -244,14 +243,14 @@ const PredictionPage = () => {
           </div>
         )}
 
-        {/* Placeholder text when no result and not loading */}
+
         {!isLoading && !predictionResult && (
           <div className="mt-10 p-6 text-center text-gray-500">
             <p>Prediction results will be displayed here once an image is processed.</p>
           </div>
         )}
 
-        {/* Loading Spinner */}
+      
         {isLoading && (
           <div className="mt-10 text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
