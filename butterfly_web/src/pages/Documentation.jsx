@@ -4,7 +4,7 @@ import { FaPython, FaReact } from "react-icons/fa";
 
 const DocumentationPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 py-8 px-4 pt-24"> {/* Added pt-24 for padding below navbar */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 py-8 px-4 pt-24"> 
       <div className="container mx-auto p-8 bg-white/80 backdrop-blur-lg shadow-2xl rounded-xl">
         <h1 className="text-4xl font-bold text-gray-800 mb-4 text-center tracking-tight">
           Documentation & Model Information

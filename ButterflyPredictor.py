@@ -13,13 +13,13 @@ class ButterflyPredictor:
             class_indices = json.load(f)
             self.index_to_class = {int(v): k for k, v in class_indices.items()}
 
-        # Set input size (make sure it matches training)
+      
         self.target_size = (224, 224)
 
     def preprocess_image(self, image_path):
         img = load_img(image_path, target_size=self.target_size)
         img_array = img_to_array(img) / 255.0
-        return np.expand_dims(img_array, axis=0)  # Add batch dimension
+        return np.expand_dims(img_array, axis=0)  
 
     def predict(self, image_path):
         preprocessed = self.preprocess_image(image_path)
