@@ -191,4 +191,3 @@ Contributions are welcome! If you have suggestions for improvements, new feature
     ```
 5.  **Open a Pull Request** against the `main` (or `master`) branch of this repository.
 
-Please ensure your code follows the existing style and that any new dependencies are justifiable.
